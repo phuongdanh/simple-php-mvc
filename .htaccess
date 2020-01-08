@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule !(\.(php|js|ico|gif|jpg|jpeg|svg|ttf|eot|otf|woff|woff2|map|png|css|html|avi|mp4|pdf|rtf|mov|MOV|xls|xlsx|zip|wmv|pdf?)$) index.php
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(eot|otf|woff2|woff|ttf|svg)$">
+		Header set Access-Control-Allow-Origin "*"
+	</FilesMatch>
+</IfModule>

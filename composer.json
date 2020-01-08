@@ -1,0 +1,11 @@
+{
+    "type": "project",
+    "description": "ThinPHPvsGraphQL framework.",
+    "license": "ThinPHPvsGraphQL",
+    "require": {
+    	
+    },
+	"autoload": {
+        "psr-4": {"App\\": "app/"}
+    }
+}
