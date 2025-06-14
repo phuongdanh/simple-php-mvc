@@ -1,19 +1,24 @@
 <?php
 
 namespace App\Controller;
-use App\Model\UserModel;
-use App\Model\CityModel;
+use App\Core\Controller;
+use SimpleResponse\Response;
+use App\Repository\UserRepositoryInterface;
+
 /**
  * @UserController
  */
-class UserController
+class UserController extends Controller
 {
+	protected $userRepository;
+	public function __construct(UserRepositoryInterface $userRepository) {
+		parent::__construct();
+		$this->userRepository = $userRepository;
+	}
 
-	public function index() {
-		echo 'Echo From UserController';
-		$userModel = new UserModel;
-		$cityModel = new CityModel;
-		$userModel->index();
-		$cityModel->index();
+	public function getList($filter = null) {
+		return Response::default(
+			$this->userRepository->getList(['filter'])
+		);
 	}
 }

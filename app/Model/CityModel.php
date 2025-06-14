@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Model;
-use App\Model\Model;
+
+use App\Core\Model;
 /**
  *  @CityModel
  */

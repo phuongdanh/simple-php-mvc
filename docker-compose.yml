@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: php-mvc-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    #        working_dir: /application
+    volumes:
+      - .:/application
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-.sweetpwd.}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-db}
+      - MYSQL_USER=${MYSQL_USER:-user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+    ports:
+      - "${MYSQL_PORT:-1111}:3306"
+
+  adminer:
+    image: adminer
+    container_name: php-mvc-adminer
+    restart: always
+    ports:
+      - "${ADMINER_PORT:-2222}:8080"
+    
+  website:
+    container_name: php-mvc-website
+    build:
+      context: ./
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "${WEBSITE_PORT:-3333}:80"
+    depends_on:
+      - mysql
